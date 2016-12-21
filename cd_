@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#activate automatic the virtual_env for projects python
+
+if [ $1 ]; then
+    if [ "$1" = ".." ]; then
+        deactivate
+        cd ..
+    else
+        if [ -d $1 ]; then
+            cd $1
+            if [ -a ".$1/bin/activate" ]; then
+                source .$1/bin/activate
+            else
+                echo "Não existe um virtual_env neste diretório!"
+            fi
+        else
+            echo "Não foi possivel encontrar este diretório!"
+        fi
+    fi
+fi
+
+exec zsh
